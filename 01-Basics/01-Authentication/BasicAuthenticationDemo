@@ -1,1 +1,76 @@
+25. What you should remember from this section
 
+Keep this mental model:
+
+AUTHENTICATION
+│
+├── Purpose
+│     └── Identify the caller
+│
+├── Question
+│     └── "Who are you?"
+│
+├── Credentials / Mechanisms
+│     ├── Username + Password
+│     ├── Basic Authentication
+│     ├── Cookie
+│     ├── JWT
+│     ├── Certificate
+│     └── OAuth/OIDC-based login
+│
+└── ASP.NET Core
+      │
+      ├── Authentication Scheme
+      ├── Authentication Handler
+      ├── ClaimsIdentity
+      ├── ClaimsPrincipal
+      └── HttpContext.User
+
+
+And then:
+
+
+
+
+
+
+Authentication
+      ↓
+Who are you?
+      ↓
+ClaimsPrincipal
+      ↓
+Authorization
+      ↓
+What can you do?
+      ↓
+Allow / Deny
+
+
+
+
+
+Your BasicAuthenticationDemo specifically
+
+
+
+
+Client
+  ↓
+Authorization: Basic Base64(username:password)
+  ↓
+BasicAuthenticationHandler
+  ↓
+Decode credentials
+  ↓
+Validate user
+  ↓
+Create Claims
+  ↓
+ClaimsPrincipal
+  ↓
+HttpContext.User
+  ↓
+[Authorize]
+  ↓
+Controller
